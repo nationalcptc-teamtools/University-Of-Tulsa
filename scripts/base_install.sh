@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-packages=( "tmux" "sshfs" "sshpass" )
+packages=( "tmux" "sshfs" "sshpass" "seclists" )
 
 if [ "$EUID" -ne 0 ]; then
   echo "Please run as root"
@@ -12,3 +12,5 @@ for package in "${packages[@]}"; do
     apt-get install -y $package
   fi
 done
+
+gunzip /usr/share/wordlists/rockyou.txt.gz
