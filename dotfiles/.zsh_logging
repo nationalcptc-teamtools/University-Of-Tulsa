@@ -1,0 +1,7 @@
+log_cmds(){
+    echo "$(date '+%Y-%m-%d %H:%M:%S') `ip -4 -br address show eth0 | cut -d ' ' -f27` - NAME-HERE - $1" >> $HOME/cmd.log
+}
+
+preexec() {
+    log_cmds "$1";
+}

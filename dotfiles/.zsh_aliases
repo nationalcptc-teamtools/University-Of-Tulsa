@@ -1,0 +1,30 @@
+gowitness-load () {
+	if [[ $# -ne 1 ]];then
+		echo "Invalid Input: Must supply full or ./ path to nmap XML File"
+		echo "Command loads the specified Nmap XML output into Gowitness for scanning"
+	else
+		sudo docker run --rm -v /opt/gowitness:/data -v `pwd`/$1:/data/$1 -p7171:7171 leonjza/gowitness gowitness nmap -f /data/$1
+	fi
+}
+
+#Kubernetes
+alias k='kubectl'
+alias kg='kubectl get'
+alias kl='kubectl logs'
+alias ka='kubectl apply -f'
+alias kd='kubectl describe'
+function kc () {
+  kubectl config set-context --current --namespace="$1";
+}
+alias b64=' b64'
+function b64 () {
+  echo $1 | base64 -w 999999; echo
+}
+alias kall='kubectl api-resources --verbs=list --namespaced -o name  | xargs -n 1 kubectl get --show-kind --ignore-not-found  -n'
+
+# Docker
+alias d="docker"
+alias dc="docker compose"
+
+alias jwtdc='jq -R "split(\".\") |.[0:2] | map(@base64d) | map(fromjson)"'
+
