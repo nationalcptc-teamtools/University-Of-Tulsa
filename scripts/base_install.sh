@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-packages=( "tmux" "sshfs" "sshpass" "seclists" )
+packages=( "tmux" "sshfs" "sshpass" "seclists" "peass" "flameshot" )
 
 if [ "$EUID" -ne 0 ]; then
   echo "Please run as root"
